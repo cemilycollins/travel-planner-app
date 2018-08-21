@@ -14,5 +14,15 @@
 }
 
 .segment {
+  float: left;
+  width: inherit;
+  overflow: hidden;
+}
+
+.ui.vertical.menu {
+  float: left;
+}
+
+.ui.grid {
   padding: 20px;
 }
