@@ -3,7 +3,7 @@ class CreateTrips < ActiveRecord::Migration[5.2]
     create_table :trips do |t|
       t.date :start_date
       t.date :end_date
-      t.string, :name
+      t.string :name
       t.string :img_url
 
       t.timestamps

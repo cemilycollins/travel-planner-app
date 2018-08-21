@@ -24,7 +24,7 @@ class TripsController < ApplicationController
   end
 
   def destroy
-    render :json @trip.destroy
+    render json: @trip.destroy
   end
 
   private
