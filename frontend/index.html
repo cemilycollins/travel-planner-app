@@ -50,15 +50,15 @@
           <div class="ui cards">
             <div class="card">
               <div class="content">
-                <div class="header">
+                <div class="header" id="name">
                   Bangkok
                 </div>
-                <div class="meta">
+                <div class="meta" id="start-end-dates">
                   9/20/2018 - 9/26/2018
                 </div>
                 <div class="description">
-                  <b>Address: 75/23 Soi Sukhumvit 13 Sukhumvit Road, Klongtoey-Nua, Wattana, Sukhumvit agoda</b><br>
-                  Avoid bargaining a flat rate with a taxi-driver, always use the meter.
+                  <b id="address">Address: 75/23 Soi Sukhumvit 13 Sukhumvit Road, Klongtoey-Nua, Wattana, Sukhumvit agoda</b>
+                  <p id="relevant-info">Avoid bargaining a flat rate with a taxi-driver, always use the meter.</p>
                 </div>
               </div>
               <div class="extra content">
@@ -75,28 +75,31 @@
           <div class="ui top attached label">
             Tickets
           </div>
-          <div class="ui blue button" id="new-ticket">Add New</div>
+          <div class="ui blue button" id="new-ticket" data-id="trip-id">Add New</div>
           <div class="ui cards">
+
             <div class="card">
               <div class="content">
                 <div class="header">
-                  Bangkok
-                </div>
-                <div class="meta">
-                  9/20/2018 - 9/26/2018
+                  Airplane
                 </div>
                 <div class="description">
-                  <b>Address: 75/23 Soi Sukhumvit 13 Sukhumvit Road, Klongtoey-Nua, Wattana, Sukhumvit agoda</b><br>
-                  Avoid bargaining a flat rate with a taxi-driver, always use the meter.
+                  <b>Departure Date and Time: </b><p id="departure-date-time">9/19/2018 5:04 PM</p>
+                  <b>Departure Location: </b><p id="departure-location">Washington, DC</p>
+                  <b>Arrival Date and Time: </b><p id="arrival-date-time">9/20/2018 7:08 PM</p>
+                  <b>Arrival Location: </b><p id="arrival-location">Washington, DC</p>
+                  <b>Price: </b><p id="price">$1200.01</p>
+                  <b>Other Info: </b><p id="relevant-info">Remember your suitcase!</p><br>
                 </div>
-              </div>
-              <div class="extra content">
-                <div class="ui two buttons">
-                  <div class="ui basic blue button" id="edit-accommodation">Edit</div>
-                  <div class="ui basic red button" id="delete-accommodation">Delete</div>
+                <div class="extra content">
+                  <div class="ui two buttons">
+                    <div class="ui basic blue button" id="edit-ticket" data-id="ticket-id">Edit</div>
+                    <div class="ui basic red button" id="delete-ticket" data-id="ticket-id">Delete</div>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -105,10 +108,28 @@
             Experiences
           </div>
           <div class="ui blue button" id="new-experience">Add New</div>
-        </div>
+          <div class="ui cards">
 
+            <div class="card">
+              <div class="content">
+                <div class="header" id="name">Grand Palace</div>
+                <div class="meta" id="start-end-dates">9/20/2018 - 9/26/2018</div>
+                <div class="description">
+                  <b id="address">Address: 1 Na Phra Lan Rd, แขวงพระบรมมหาราชวัง Khet Phra Nakhon</b>
+                  <p id="relevant-info">Avoid bargaining a flat rate with a taxi-driver, always use the meter.</p>
+                </div>
+              </div>
+              <div class="extra content">
+                <div class="ui two buttons">
+                  <div class="ui basic blue button" id="edit-experience">Edit</div>
+                  <div class="ui basic red button" id="delete-experience">Delete</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
 
     <script src="src/index.js"></script>
   </body>
