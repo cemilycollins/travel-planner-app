@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="header">
+    <div class="top-header">
       <h1 class="header-text">Travel Planner</h1>
     </div>
 
@@ -20,25 +20,93 @@
     <div class="ui grid">
       <div class="four wide column">
         <div class="ui inverted vertical menu" id='invertedMenu'>
-          <a class="active item">
-            Home
-          </a>
+          <a class="active item">Home</a>
         </div>
+        <div class="ui blue button" id="new-trip">Add New Trip</div>
       </div>
 
       <div class="twelve wide column">
+
         <div class="ui segment">
           <div class="ui top attached label">
-            Accommodation
+            Trip information
           </div>
-          <p>Other text...</p>
+          <div class="description">
+            <b>Trip Name: </b><p id="trip-name">Thailand</p>
+            <b>Start Date: </b><p id="trip-start">9/20/2018</p>
+            <b>End Date: </b><p id="trip-end">10/20/2018</p><br>
+          </div>
+          <div class="ui two buttons">
+            <div class="ui basic blue button" id="edit-trip">Edit</div>
+            <div class="ui basic red button" id="delete-trip">Delete</div>
+          </div>
         </div>
+
         <div class="ui segment">
           <div class="ui top attached label">
-            Accommodation
+            Accommodations
           </div>
-          <p>Other text...</p>
+          <div class="ui blue button" id="new-accommodation">Add New</div>
+          <div class="ui cards">
+            <div class="card">
+              <div class="content">
+                <div class="header">
+                  Bangkok
+                </div>
+                <div class="meta">
+                  9/20/2018 - 9/26/2018
+                </div>
+                <div class="description">
+                  <b>Address: 75/23 Soi Sukhumvit 13 Sukhumvit Road, Klongtoey-Nua, Wattana, Sukhumvit agoda</b><br>
+                  Avoid bargaining a flat rate with a taxi-driver, always use the meter.
+                </div>
+              </div>
+              <div class="extra content">
+                <div class="ui two buttons">
+                  <div class="ui basic blue button" id="edit-accommodation">Edit</div>
+                  <div class="ui basic red button" id="delete-accommodation">Delete</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="ui segment">
+          <div class="ui top attached label">
+            Tickets
+          </div>
+          <div class="ui blue button" id="new-ticket">Add New</div>
+          <div class="ui cards">
+            <div class="card">
+              <div class="content">
+                <div class="header">
+                  Bangkok
+                </div>
+                <div class="meta">
+                  9/20/2018 - 9/26/2018
+                </div>
+                <div class="description">
+                  <b>Address: 75/23 Soi Sukhumvit 13 Sukhumvit Road, Klongtoey-Nua, Wattana, Sukhumvit agoda</b><br>
+                  Avoid bargaining a flat rate with a taxi-driver, always use the meter.
+                </div>
+              </div>
+              <div class="extra content">
+                <div class="ui two buttons">
+                  <div class="ui basic blue button" id="edit-accommodation">Edit</div>
+                  <div class="ui basic red button" id="delete-accommodation">Delete</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui segment">
+          <div class="ui top attached label">
+            Experiences
+          </div>
+          <div class="ui blue button" id="new-experience">Add New</div>
+        </div>
+
       </div>
     </div>
 
