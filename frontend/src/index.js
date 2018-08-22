@@ -1,7 +1,10 @@
+let addTrip = document.getElementById('new-trip')
+
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
-  fetchTrips()
+  fetchTrips
+  addTrip.addEventListener('click', newTrip)
 }
 
 function fetchTrips() {
@@ -32,12 +35,13 @@ function fetchOneTrip(id) {
 function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
   fetchOneTrip(id).then(tripJson => {
-    createTripSegment(tripJson)
+    renderTripSegment(tripJson)
     createAccommodationSegment(tripJson)
   })
 }
 
-function createTripSegment(tripJson) {
+function renderTripSegment(tripJson) {
+  createTripSegment()
   let trip_info = document.getElementById('trip-description')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
@@ -57,15 +61,61 @@ function createTripSegment(tripJson) {
   p2.id = 'trip-start'
   p3.id = 'trip-end'
 }
-<<<<<<< HEAD
-=======
+
+function createTripSegment() {
+  let segmentsDiv = document.querySelector('.twelve')
+  let div = document.createElement('div')
+  let div1 = document.createElement('div')
+  let div2 = document.createElement('div')
+  let div3 = document.createElement('div')
+  let div4 = document.createElement('div')
+  let div5 = document.createElement('div')
+
+  segmentsDiv.appendChild(div)
+  div.append(div1, div2, div3)
+  div3.append(div4, div5)
+  div.classList.add("ui", "segment")
+  div1.classList.add("ui", "top", "attached", "label")
+  div2.className = "description"
+  div3.classList.add("ui", "two", "buttons")
+  div4.classList.add("ui", "basic", "blue", "button")
+  div5.classList.add("ui", "basic", "red", "button")
+
+  div2.id = "trip-description"
+  div4.id = "edit-trip"
+  div5.id = "delete-trip"
+  div1.innerText = "Trip Information"
+  div4.innerText = "Edit"
+  div5.innerText = "Delete"
+}
 
 function createSegment(name) {
   let segmentsDiv = document.querySelector('.twelve')
-  
+
 }
 
 function createAccommodationSegment(tripJson) {
-
 }
->>>>>>> aa04eea4d3ee5e8ef60b70c242954b894bd78eb9
+
+function newTrip() {
+  let tripForm = document.getElementById('new-trip-form')
+  tripForm.innerHTML = ""
+  tripForm.innerHTML = `<form class="ui form">
+  <h4 class="ui dividing header">Create A New Trip</h4>
+  <div class="field">
+    <label>Name</label>
+    <div class="three fields">
+      <div class="field">
+        <input type="text" id="trip-name" placeholder="Trip Name">
+      </div>
+      <br>
+      <div class="field">
+        <input type="text" id="trip-start" placeholder="Start Date">
+      </div>
+      <br>
+      <div class="field">
+        <input type="text" id="trip-end" placeholder="End Date">
+      </div>
+      <div class="ui button" tabindex="0">Create Trip</div>
+      </form>`
+}
