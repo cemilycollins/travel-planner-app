@@ -5,7 +5,7 @@ class App {
     .then(response => response.json())
   }
 
-  postFetchTrip(start_date, end_date, name, img_url) {
+static postFetchTrip(start_date, end_date, name, img_url) {
     return fetch(`http://localhost:3000/trips/`, {
       method: "POST",
       body: JSON.stringify({
@@ -18,7 +18,10 @@ class App {
         "Content-Type": "application/json",
         "Accept": "application/json"
       }
-    }).then(r => r.json())
-  }
+    }).then(response => response.json())
+    .then(json => {
+      Trip.renderSideBar(json)
+  })
+}
 
 }

@@ -18,7 +18,7 @@ function fetchTrips() {
       Trip.renderSideBar(trip)
     }
   })
-
+}
 
 function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
@@ -34,6 +34,8 @@ function renderTripProfile(event) {
 function renderTripSegment(tripJson) {
   createTripSegment()
   let trip_info = document.getElementById('trip-description')
+  trip_info.innerHTML = ""
+  let img = document.createElement('img')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
   let b3 = document.createElement('b')
@@ -41,13 +43,14 @@ function renderTripSegment(tripJson) {
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
 
-  trip_info.append(b, p, b2, p2, b3, p3)
+  trip_info.append(b, p, b2, p2, b3, p3, img)
   b.innerText = 'Trip Name: '
   b2.innerText = 'Start Date: '
   b3.innerText = 'End Date: '
   p.innerText = tripJson.name
   p2.innerText = tripJson.start_date
   p3.innerText = tripJson.end_date
+  img.src = tripJson.img_url
   p.id = 'trip-name'
   p2.id = 'trip-start'
   p3.id = 'trip-end'
@@ -99,102 +102,4 @@ function createSegment(name) {
   segmentDiv.append(labelDiv, addButtonDiv, cardsDiv)
 
   return segmentDiv
-}
-
-function createAccommodationSegment(tripJson) {
-  let segmentDiv = createSegment("Accommodations")
-  segmentDiv.querySelector('.button').dataset.id = tripJson.id
-  // segmentDiv.querySelector('.button').addEventListener('click', renderNewAccForm)
-  let cardsDiv = segmentDiv.querySelector('.cards')
-  if (tripJson.accommodations.length > 0) {
-    tripJson.accommodations.forEach(acc => {
-      addAccommodationCard(acc, cardsDiv)
-    })
-  }
-}
-
-function addAccommodationCard(acc, cardsDiv) {
-  cardsDiv.innerHTML += `<div class='card'> \
-    <div class='content'> \
-      <div class='header' id='name'>${acc.city}</div> \
-      <div class='meta' id='start-end-dates'>${acc.start_date} - ${acc.end_date}</div> \
-      <div class='description'> \
-        <b id='address'>Address: ${acc.address}</b> \
-        <p id='relevant-info'>${acc.relevant_info}</p> \
-      </div> \
-    </div> \
-    <div class='extra content'> \
-      <div class='ui two buttons'> \
-        <div class='ui basic blue button' id='edit-accommodation' data-id=${acc.id}>Edit</div> \
-        <div class='ui basic red button' id='delete-accommodation' data-id=${acc.id}>Delete</div> \
-      </div> \
-    </div> \
-  </div>`
-}
-
-function createTicketSegment(tripJson) {
-  let segmentDiv = createSegment("Tickets")
-  segmentDiv.querySelector('.button').dataset.id = tripJson.id
-  // segmentDiv.querySelector('.button').addEventListener('click', renderNewTicketForm)
-  let cardsDiv = segmentDiv.querySelector('.cards')
-  if (tripJson.tickets.length > 0) {
-    tripJson.tickets.forEach(ticket => {
-      addTicketCard(ticket, cardsDiv)
-    })
-  }
-}
-
-function addTicketCard(ticket, cardsDiv) {
-  cardsDiv.innerHTML += `<div class="card">
-    <div class="content">
-      <div class="header">
-        ${ticket.type_of}
-      </div>
-      <div class="description">
-        <b>Departure Date and Time: </b><p id="departure-date-time">${ticket.departure_date_time}</p>
-        <b>Departure Location: </b><p id="departure-location">${ticket.departure_location}</p>
-        <b>Arrival Date and Time: </b><p id="arrival-date-time">${ticket.arrival_date_time}</p>
-        <b>Arrival Location: </b><p id="arrival-location">${ticket.arrival_location}</p>
-        <b>Price: </b><p id="price">$${ticket.price}</p>
-        <b>Other Info: </b><p id="relevant-info">${ticket.relevant_info}</p><br>
-      </div>
-      <div class="extra content">
-        <div class="ui two buttons">
-          <div class="ui basic blue button" id="edit-ticket" data-id="ticket-id">Edit</div>
-          <div class="ui basic red button" id="delete-ticket" data-id="ticket-id">Delete</div>
-        </div>
-      </div>
-    </div>
-  </div>`
-}
-
-function createExperienceSegment(tripJson) {
-  let segmentDiv = createSegment("Experiences")
-  segmentDiv.querySelector('.button').dataset.id = tripJson.id
-  // segmentDiv.querySelector('.button').addEventListener('click', renderNewExperienceForm)
-  let cardsDiv = segmentDiv.querySelector('.cards')
-  if (tripJson.experiences.length > 0) {
-    tripJson.experiences.forEach(exp => {
-      addExperienceCard(exp, cardsDiv)
-    })
-  }
-}
-
-function addExperienceCard(exp, cardsDiv) {
-  cardsDiv.innerHTML += `<div class="card">
-    <div class="content">
-      <div class="header" id="name">${exp.name}</div>
-      <div class="meta" id="date">${exp.date}</div>
-      <div class="description">
-        <b id="address">Address: ${exp.address}</b>
-        <p id="relevant-info">${exp.relevant_info}</p>
-      </div>
-    </div>
-    <div class="extra content">
-      <div class="ui two buttons">
-        <div class="ui basic blue button" id="edit-experience">Edit</div>
-        <div class="ui basic red button" id="delete-experience">Delete</div>
-      </div>
-    </div>
-  </div>`
 }

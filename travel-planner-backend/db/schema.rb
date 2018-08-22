@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_160137) do
   end
 
   create_table "trips", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.string "start_date"
+    t.string "end_date"
     t.string "name"
     t.string "img_url"
     t.datetime "created_at", null: false
