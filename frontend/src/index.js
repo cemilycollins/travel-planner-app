@@ -33,9 +33,19 @@ function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
   fetchOneTrip(id).then(tripJson => {
     createTripSegment(tripJson)
+    createAccommodationSegment(tripJson)
   })
 }
-  
+
 function createTripSegment(tripJson) {
+
+}
+
+function createSegment(name) {
+  let segmentsDiv = document.querySelector('.twelve')
+  
+}
+
+function createAccommodationSegment(tripJson) {
 
 }
