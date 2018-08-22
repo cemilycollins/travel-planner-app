@@ -10,6 +10,7 @@ function init() {
 function createNewTrip() {
   Trip.newTrip()
 }
+
 function fetchTrips() {
   fetch('http://localhost:3000/trips')
   .then(response => response.json())
@@ -89,17 +90,19 @@ function createSegment(name) {
   let labelDiv = document.createElement('div')
   let addButtonDiv = document.createElement('div')
   let cardsDiv = document.createElement('div')
+  let formDiv = document.createElement('div')
 
   segmentDiv.classList.add("ui", "segment")
   labelDiv.classList.add("ui", "top", "attached", "label")
   addButtonDiv.classList.add("ui", "blue", "button")
   cardsDiv.classList.add("ui", "cards")
+  formDiv.id = "form"
 
   addButtonDiv.innerText = "Add New"
   labelDiv.innerText = name
 
   columnDiv.appendChild(segmentDiv)
-  segmentDiv.append(labelDiv, addButtonDiv, cardsDiv)
+  segmentDiv.append(labelDiv, addButtonDiv, formDiv, cardsDiv)
 
   return segmentDiv
 }
