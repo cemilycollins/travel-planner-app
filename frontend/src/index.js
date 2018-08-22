@@ -3,28 +3,21 @@ let addTrip = document.getElementById('new-trip')
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
-  fetchTrips
-  addTrip.addEventListener('click', newTrip)
+  fetchTrips()
+  addTrip.addEventListener('click', createNewTrip)
 }
 
+function createNewTrip() {
+  Trip.newTrip()
+}
 function fetchTrips() {
   fetch('http://localhost:3000/trips')
   .then(response => response.json())
   .then(json => {
     for(let trip of json) {
-      renderSideBar(trip)
+      Trip.renderSideBar(trip)
     }
   })
-}
-
-function renderSideBar(trip) {
-  let sideBar = document.getElementById('invertedMenu')
-  let a = document.createElement('a')
-  a.addEventListener('click', renderTripProfile)
-  a.classList.add("active", "item")
-  sideBar.appendChild(a)
-  a.innerText = trip.name
-  a.dataset.id = trip.id
 }
 
 function fetchOneTrip(id) {
@@ -112,27 +105,6 @@ function createSegment(name) {
   return segmentDiv
 }
 
-function newTrip() {
-  let tripForm = document.getElementById('new-trip-form')
-  tripForm.innerHTML = ""
-  tripForm.innerHTML = `<form class="ui form">
-  <h4 class="ui dividing header">Create A New Trip</h4>
-  <div class="field">
-    <label>Name</label>
-    <div class="three fields">
-      <div class="field">
-        <input type="text" id="trip-name" placeholder="Trip Name">
-      </div>
-      <br>
-      <div class="field">
-        <input type="text" id="trip-start" placeholder="Start Date">
-      </div>
-      <br>
-      <div class="field">
-        <input type="text" id="trip-end" placeholder="End Date">
-      </div>
-      <div class="ui button" tabindex="0">Create Trip</div>
-      </form>`
 
 function createAccommodationSegment(tripJson) {
   let segmentDiv = createSegment("Accommodations")
@@ -214,7 +186,7 @@ function createExperienceSegment(tripJson) {
 }
 
 function addExperienceCard(exp, cardsDiv) {
-  cardsDiv.innerHTML += `div class="card">
+  cardsDiv.innerHTML += `<div class="card">
     <div class="content">
       <div class="header" id="name">${exp.name}</div>
       <div class="meta" id="date">${exp.date}</div>
