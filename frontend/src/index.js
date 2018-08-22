@@ -24,6 +24,18 @@ function renderSideBar(trip) {
   a.dataset.id = trip.id
 }
 
+function fetchOneTrip(id) {
+  return fetch('http://localhost:3000/trips')
+  .then(response => response.json())
+}
+
 function renderTripProfile(event) {
+  let id = event.currentTarget.dataset.id
+  fetchOneTrip(id).then(tripJson => {
+    createTripSegment(tripJson)
+  })
+}
+  
+function createTripSegment(tripJson) {
 
 }
