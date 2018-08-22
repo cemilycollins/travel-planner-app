@@ -1,7 +1,10 @@
+let addTrip = document.getElementById('new-trip')
+
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
-  fetchTrips()
+  fetchTrips
+  addTrip.addEventListener('click', newTrip)
 }
 
 function fetchTrips() {
@@ -32,18 +35,16 @@ function fetchOneTrip(id) {
 function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
   fetchOneTrip(id).then(tripJson => {
-    createTripSegment(tripJson)
+    renderTripSegment(tripJson)
     createAccommodationSegment(tripJson)
     createTicketSegment(tripJson)
     createExperienceSegment(tripJson)
   })
 }
 
-function createTripSegment(tripJson) {
+function renderTripSegment(tripJson) {
+  createTripSegment()
   let trip_info = document.getElementById('trip-description')
-  let div = document.createElement('div')
-  let div1 = document.createElement('div')
-  let div2 = document.createElement('div')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
   let b3 = document.createElement('b')
@@ -51,11 +52,7 @@ function createTripSegment(tripJson) {
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
 
-  trip_info.append(div, div1, div2)
-  div.append(b, p)
-  div1.append(b2, p2)
-  div2.append(b3, p3)
-
+  trip_info.append(b, p, b2, p2, b3, p3)
   b.innerText = 'Trip Name: '
   b2.innerText = 'Start Date: '
   b3.innerText = 'End Date: '
@@ -65,6 +62,33 @@ function createTripSegment(tripJson) {
   p.id = 'trip-name'
   p2.id = 'trip-start'
   p3.id = 'trip-end'
+}
+
+function createTripSegment() {
+  let segmentsDiv = document.querySelector('.twelve')
+  let div = document.createElement('div')
+  let div1 = document.createElement('div')
+  let div2 = document.createElement('div')
+  let div3 = document.createElement('div')
+  let div4 = document.createElement('div')
+  let div5 = document.createElement('div')
+
+  segmentsDiv.appendChild(div)
+  div.append(div1, div2, div3)
+  div3.append(div4, div5)
+  div.classList.add("ui", "segment")
+  div1.classList.add("ui", "top", "attached", "label")
+  div2.className = "description"
+  div3.classList.add("ui", "two", "buttons")
+  div4.classList.add("ui", "basic", "blue", "button")
+  div5.classList.add("ui", "basic", "red", "button")
+
+  div2.id = "trip-description"
+  div4.id = "edit-trip"
+  div5.id = "delete-trip"
+  div1.innerText = "Trip Information"
+  div4.innerText = "Edit"
+  div5.innerText = "Delete"
 }
 
 function createSegment(name) {
@@ -87,6 +111,28 @@ function createSegment(name) {
 
   return segmentDiv
 }
+
+function newTrip() {
+  let tripForm = document.getElementById('new-trip-form')
+  tripForm.innerHTML = ""
+  tripForm.innerHTML = `<form class="ui form">
+  <h4 class="ui dividing header">Create A New Trip</h4>
+  <div class="field">
+    <label>Name</label>
+    <div class="three fields">
+      <div class="field">
+        <input type="text" id="trip-name" placeholder="Trip Name">
+      </div>
+      <br>
+      <div class="field">
+        <input type="text" id="trip-start" placeholder="Start Date">
+      </div>
+      <br>
+      <div class="field">
+        <input type="text" id="trip-end" placeholder="End Date">
+      </div>
+      <div class="ui button" tabindex="0">Create Trip</div>
+      </form>`
 
 function createAccommodationSegment(tripJson) {
   let segmentDiv = createSegment("Accommodations")
