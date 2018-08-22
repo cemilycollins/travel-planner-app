@@ -38,9 +38,6 @@ function renderTripProfile(event) {
 
 function createTripSegment(tripJson) {
   let trip_info = document.getElementById('trip-description')
-  let div = document.createElement('div')
-  let div1 = document.createElement('div')
-  let div2 = document.createElement('div')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
   let b3 = document.createElement('b')
@@ -48,11 +45,7 @@ function createTripSegment(tripJson) {
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
 
-  trip_info.append(div, div1, div2)
-  div.append(b, p)
-  div1.append(b2, p2)
-  div2.append(b3, p3)
-
+  trip_info.append(b, p, b2, p2, b3, p3)
   b.innerText = 'Trip Name: '
   b2.innerText = 'Start Date: '
   b3.innerText = 'End Date: '
@@ -63,5 +56,3 @@ function createTripSegment(tripJson) {
   p2.id = 'trip-start'
   p3.id = 'trip-end'
 }
-
-a
