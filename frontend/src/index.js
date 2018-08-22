@@ -21,7 +21,6 @@ function fetchTrips() {
   })
 }
 
-
 function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
   let app = new App()
@@ -36,6 +35,8 @@ function renderTripProfile(event) {
 function renderTripSegment(tripJson) {
   createTripSegment()
   let trip_info = document.getElementById('trip-description')
+  trip_info.innerHTML = ""
+  let img = document.createElement('img')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
   let b3 = document.createElement('b')
@@ -43,13 +44,14 @@ function renderTripSegment(tripJson) {
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
 
-  trip_info.append(b, p, b2, p2, b3, p3)
+  trip_info.append(b, p, b2, p2, b3, p3, img)
   b.innerText = 'Trip Name: '
   b2.innerText = 'Start Date: '
   b3.innerText = 'End Date: '
   p.innerText = tripJson.name
   p2.innerText = tripJson.start_date
   p3.innerText = tripJson.end_date
+  img.src = tripJson.img_url
   p.id = 'trip-name'
   p2.id = 'trip-start'
   p3.id = 'trip-end'
