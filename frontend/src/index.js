@@ -18,20 +18,16 @@ function fetchTrips() {
       Trip.renderSideBar(trip)
     }
   })
-}
 
-function fetchOneTrip(id) {
-  return fetch(`http://localhost:3000/trips/${id}`)
-  .then(response => response.json())
-}
 
 function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
-  fetchOneTrip(id).then(tripJson => {
+  let app = new App()
+  app.fetchOneTrip(id).then(tripJson => {
     renderTripSegment(tripJson)
-    createAccommodationSegment(tripJson)
-    createTicketSegment(tripJson)
-    createExperienceSegment(tripJson)
+    Accommodation.createAccommodationSegment(tripJson)
+    Ticket.createTicketSegment(tripJson)
+    Experience.createExperienceSegment(tripJson)
   })
 }
 
@@ -104,7 +100,6 @@ function createSegment(name) {
 
   return segmentDiv
 }
-
 
 function createAccommodationSegment(tripJson) {
   let segmentDiv = createSegment("Accommodations")
