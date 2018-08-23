@@ -34,6 +34,6 @@ class ExperiencesController < ApplicationController
   end
 
   def experience_params
-    params.permit(:name, :address, :city, :date, :relevant_info, :trip_id)
+    params.permit(:name, :address, :city, :date, :relevant_info, :trip_id, :experience)
   end
 end

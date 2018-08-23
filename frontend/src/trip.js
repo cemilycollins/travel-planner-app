@@ -137,7 +137,6 @@ static createTripSegment() {
        </div>
        <div class="ui button" id="new-trip-button" tabindex="0">Edit Trip</div>
        </form>`
-       let 
   }
 
 }
