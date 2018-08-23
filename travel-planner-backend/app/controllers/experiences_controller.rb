@@ -7,7 +7,7 @@ class ExperiencesController < ApplicationController
   end
 
   def create
-    render json: Experience.create(ticket_params)
+    render json: Experience.create(experience_params)
   end
 
   def show
@@ -15,7 +15,7 @@ class ExperiencesController < ApplicationController
   end
 
   def update
-    @experience.update(trip_params)
+    @experience.update(experience_params)
     if @experience.save
       render json: @experience, status: :accepted
     else

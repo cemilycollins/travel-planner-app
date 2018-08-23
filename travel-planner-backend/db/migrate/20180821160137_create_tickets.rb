@@ -2,9 +2,9 @@ class CreateTickets < ActiveRecord::Migration[5.2]
   def change
     create_table :tickets do |t|
       t.string :type_of
-      t.datetime :departure_date_time
+      t.string :departure_date_time
       t.string :departure_location
-      t.datetime :arrival_date_time
+      t.string :arrival_date_time
       t.string :arrival_location
       t.float :price
       t.text :relevant_info

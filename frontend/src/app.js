@@ -24,4 +24,27 @@ static postFetchTrip(start_date, end_date, name, img_url) {
   })
 }
 
+static postFetchAcc(city, start_date, end_date, address, relevant_info, trip_id) {
+  fetch(`http://localhost:3000/accommodations/`, {
+    method: "POST",
+    body: JSON.stringify({
+      start_date: start_date,
+      end_date: end_date,
+      city: city,
+      address: address,
+      relevant_info: relevant_info,
+      trip_id: trip_id
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  }).then(response => response.json())
+  .then(json => {
+    let cardsDivs = document.querySelectorAll('.cards')
+    Accommodation.addAccommodationCard(json, cardsDivs[0])
+    cardsDivs[0].parentNode.querySelector('#form').innerHTML = ""
+  })
+}
+
 }
