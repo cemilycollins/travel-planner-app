@@ -25,10 +25,7 @@ function renderTripProfile(event) {
   let id = event.currentTarget.dataset.id
   let app = new App()
     App.fetchOneTrip(id).then(tripJson => {
-    Trip.renderTripSegment(tripJson)
-    Accommodation.createAccommodationSegment(tripJson)
-    Ticket.createTicketSegment(tripJson)
-    Experience.createExperienceSegment(tripJson)
+    renderNewTripProfile(tripJson)
   })
 }
 
@@ -53,4 +50,11 @@ function createSegment(name) {
   segmentDiv.append(labelDiv, addButtonDiv, formDiv, cardsDiv)
 
   return segmentDiv
+}
+
+function renderNewTripProfile(tripJson) {
+    Trip.renderTripSegment(tripJson)
+    Accommodation.createAccommodationSegment(tripJson)
+    Ticket.createTicketSegment(tripJson)
+    Experience.createExperienceSegment(tripJson)
 }
