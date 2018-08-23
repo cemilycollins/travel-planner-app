@@ -14,6 +14,7 @@ static renderSideBar(trip) {
   sideBar.appendChild(a)
   a.innerText = trip.name
   a.dataset.id = trip.id
+  a.id = `sidebar-${trip.id}`
   }
 
   static newTrip() {
@@ -57,7 +58,7 @@ static renderSideBar(trip) {
 static renderTripSegment(tripJson) {
   let container = document.getElementById('twelve')
   container.innerHTML = ""
-  this.createTripSegment()
+  this.createTripSegment(tripJson.id)
   let trip_info = document.getElementById('trip-description')
   let img = document.createElement('img')
   let b = document.createElement('b')
@@ -78,9 +79,10 @@ static renderTripSegment(tripJson) {
   p.id = 'trip-name'
   p2.id = 'trip-start'
   p3.id = 'trip-end'
+  img.id = 'trip-img'
 }
 
-static createTripSegment() {
+static createTripSegment(id) {
   let segmentsDiv = document.querySelector('.twelve')
   let div = document.createElement('div')
   let div1 = document.createElement('div')
@@ -110,33 +112,47 @@ static createTripSegment() {
   div5.innerText = "Delete"
 
   let eButton = document.getElementById('edit-trip')
+  eButton.dataset.id = id
   eButton.onclick = this.editTrip
   }
 
  static editTrip(event) {
+   let id = event.currentTarget.dataset.id
    let changeTrip = document.getElementById('edit-trip-form')
    changeTrip.innerHTML = `<form class="ui form">
+   <br>
    <h4 class="ui dividing header">Edit Trip</h4>
    <div class="field">
      <label>Name *</label>
      <div class="one field">
        <div class="field">
-         <input type="text" id="trip-name" placeholder="Trip Name">
+         <input type="text" id="edit-trip-name" placeholder="Trip Name">
        </div>
        <label>Start Date *</label>
        <div class="field">
-         <input type="text" id="trip-start" placeholder="MM/DD/YYYY">
+         <input type="text" id="edit-trip-start" placeholder="MM/DD/YYYY">
        </div>
        <label>End Date *</label>
        <div class="field">
-         <input type="text" id="trip-end" placeholder="MM/DD/YYYY">
+         <input type="text" id="edit-trip-end" placeholder="MM/DD/YYYY">
        </div>
        <label>Image URL *</label>
        <div class="field">
-         <input type="text" id="trip-url" placeholder="Image URL">
+         <input type="text" id="edit-trip-url" placeholder="Image URL">
        </div>
-       <div class="ui button" id="new-trip-button" tabindex="0">Edit Trip</div>
+       <div class="ui button" id="edit-trip-button" tabindex="0">Edit Trip</div>
        </form>`
+       let currentName = document.getElementById('trip-name').innerText
+       let currentStart = document.getElementById('trip-start').innerText
+       let currentEnd = document.getElementById('trip-end').innerText
+       let currentImg = document.getElementById('trip-img').src
+       document.getElementById('edit-trip-name').value = currentName
+       document.getElementById('edit-trip-start').value = currentStart
+       document.getElementById('edit-trip-end').value = currentEnd
+       document.getElementById('edit-trip-url').value = currentImg
+       let editTripForm = document.getElementById('edit-trip-button')
+       editTripForm.dataset.id = id
+       editTripForm.addEventListener('click', App.tripEditPatch)
   }
 
 }
