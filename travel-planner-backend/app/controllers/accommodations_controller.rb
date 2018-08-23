@@ -7,15 +7,15 @@ class AccommodationsController < ApplicationController
   end
 
   def create
-    render json: Accommodation.create(ticket_params)
+    render json: Accommodation.create(accommodation_params)
   end
 
   def show
-    render json: @ticket
+    render json: @accommodation
   end
 
   def update
-    @accommodation.update(trip_params)
+    @accommodation.update(accommodation_params)
     if @accommodation.save
       render json: @accommodation, status: :accepted
     else
@@ -34,6 +34,6 @@ class AccommodationsController < ApplicationController
   end
 
   def accommodation_params
-    params.permit(:address, :city, :start_date, :end_date, :relevant_info, :trip_id)
+    params.permit(:address, :city, :start_date, :end_date, :relevant_info, :trip_id, :accommodation)
   end
 end

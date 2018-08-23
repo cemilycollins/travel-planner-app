@@ -15,7 +15,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    @ticket.update(trip_params)
+    @ticket.update(ticket_params)
     if @ticket.save
       render json: @ticket, status: :accepted
     else
@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
 
   def destroy
     render json: @ticket.destroy
-  end 
+  end
 
   private
 
