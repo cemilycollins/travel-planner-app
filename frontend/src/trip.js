@@ -114,6 +114,9 @@ static createTripSegment(id) {
   let eButton = document.getElementById('edit-trip')
   eButton.dataset.id = id
   eButton.onclick = this.editTrip
+  let dButton = document.getElementById('delete-trip')
+  dButton.dataset.id = id
+  dButton.onclick = this.deleteTrip
   }
 
  static editTrip(event) {
@@ -154,5 +157,18 @@ static createTripSegment(id) {
        editTripForm.dataset.id = id
        editTripForm.addEventListener('click', App.tripEditPatch)
   }
-
+  static deleteTrip(event) {
+    let id = event.currentTarget.dataset.id
+    fetch(`http://localhost:3000/trips/${id}`, {
+    method: "DELETE"
+  })
+  .then(response => response.json())
+  .then(json => {
+    let tripInfo = document.getElementById('twelve')
+    let sideInfo = document.getElementById('invertedMenu')
+    tripInfo.innerHTML = ""
+    let sideTrip = document.querySelector(`#sidebar-${id}`)
+    sideInfo.removeChild(sideTrip)
+    })
+  }
 }
