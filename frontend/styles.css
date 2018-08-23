@@ -25,9 +25,15 @@
 
 .ui.grid {
   padding: 20px;
+  display: table;
 }
 
 .ui.label {
   font-weight: 700;
   font-size: 1.15em;
+}
+
+.description img {
+   height: 50%;
+   width: 65%;
 }

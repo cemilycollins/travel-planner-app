@@ -1,6 +1,6 @@
 class App {
 
-  fetchOneTrip(id) {
+static fetchOneTrip(id) {
     return fetch(`http://localhost:3000/trips/${id}`)
     .then(response => response.json())
   }
@@ -21,7 +21,10 @@ static postFetchTrip(start_date, end_date, name, img_url) {
     }).then(response => response.json())
     .then(json => {
       Trip.renderSideBar(json)
+      renderTripProfile(json)
   })
+  let tripForm = document.getElementById('new-trip-form')
+  tripForm.innerHTML = ""
 }
 
 }
