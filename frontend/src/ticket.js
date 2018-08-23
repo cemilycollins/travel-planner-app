@@ -3,17 +3,16 @@ class Ticket {
   static createTicketSegment(tripJson) {
     let segmentDiv = createSegment("Tickets")
     segmentDiv.querySelector('.button').dataset.id = tripJson.id
-    // segmentDiv.querySelector('.button').addEventListener('click', renderNewTicketForm)
+    segmentDiv.querySelector('.button').addEventListener('click', Ticket.renderNewTicketForm)
     let cardsDiv = segmentDiv.querySelector('.cards')
     if (tripJson.tickets.length > 0) {
       tripJson.tickets.forEach(ticket => {
-        let tick = new Ticket()
-        tick.addTicketCard(ticket, cardsDiv)
+        Ticket.addTicketCard(ticket, cardsDiv)
       })
     }
   }
 
-  addTicketCard(ticket, cardsDiv) {
+  static addTicketCard(ticket, cardsDiv) {
     cardsDiv.innerHTML += `<div class="card">
       <div class="content">
         <div class="header">
@@ -35,5 +34,56 @@ class Ticket {
         </div>
       </div>
     </div>`
+  }
+
+  static renderNewTicketForm(e) {
+    let form = e.currentTarget.parentNode.querySelector('#form')
+    let id = e.currentTarget.dataset.id
+    form.innerHTML = ""
+    form.innerHTML = `<form class="ui form">
+    <br>
+    <h4 class="ui dividing header">New Ticket</h4>
+    <div class="field">
+      <div class="one field">
+        <label>Type *</label>
+        <div class="field">
+          <input type="text" id="type-of" placeholder="Transportation Type">
+        </div>
+        <label>Departure Date and Time *</label>
+        <div class="field">
+          <input type="text" id="departure-date-time" placeholder="MM/DD/YYY ##:## AM/PM">
+        </div>
+        <label>Departure Location *</label>
+        <div class="field">
+          <input type="text" id="departure-location" placeholder="Location">
+        </div>
+        <label>Arrival Date and Time *</label>
+        <div class="field">
+          <input type="text" id="arrival-date-time" placeholder="MM/DD/YYY ##:## AM/PM">
+        </div>
+        <label>Arrival Location *</label>
+        <div class="field">
+          <input type="text" id="arrival-location" placeholder="Location">
+        </div>
+        <label>Price *</label>
+        <div class="field">
+          <input type="text" id="price" placeholder="Enter price without dollar signs">
+        </div>
+        <label>Other Relevant Info</label>
+        <div class="field">
+          <input type="text" id="relevant-info" placeholder="Other Info">
+        </div>
+        <div class="ui button" id="new-ticket-submit" data-id="${id}" tabindex="0">Submit</div>
+        </form>`
+
+        let createButton = document.getElementById('new-ticket-submit')
+        createButton.addEventListener('click', Ticket.createNewTicket)
+  }
+
+  static createNewTicket(e) {
+    let tripid = e.currentTarget.dataset.id
+    let formInputs = e.currentTarget.parentNode.querySelectorAll('input')
+    debugger
+    App.postFetchTicket(formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value, formInputs[4].value, formInputs[5].value, formInputs[6].value, tripid)
   }
 }
