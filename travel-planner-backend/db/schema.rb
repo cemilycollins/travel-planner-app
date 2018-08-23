@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2018_08_21_160137) do
   create_table "accommodations", force: :cascade do |t|
     t.string "address"
     t.string "city"
-    t.date "start_date"
-    t.date "end_date"
+    t.string "start_date"
+    t.string "end_date"
     t.text "relevant_info"
     t.integer "trip_id"
     t.datetime "created_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_160137) do
     t.string "name"
     t.string "address"
     t.string "city"
-    t.date "date"
+    t.string "date"
     t.text "relevant_info"
     t.integer "trip_id"
     t.datetime "created_at", null: false
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 2018_08_21_160137) do
 
   create_table "tickets", force: :cascade do |t|
     t.string "type_of"
-    t.datetime "departure_date_time"
+    t.string "departure_date_time"
     t.string "departure_location"
-    t.datetime "arrival_date_time"
+    t.string "arrival_date_time"
     t.string "arrival_location"
     t.float "price"
     t.text "relevant_info"
