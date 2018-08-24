@@ -128,8 +128,61 @@ static patchFetchAcc(id, city, start_date, end_date, address, relevant_info) {
       "Accept": "application/json"
     }
   }).then(response => response.json())
-
 }
+
+static patchFetchTicket(id, type_of, departure_date_time, departure_location, arrival_date_time, arrival_location, price, relevant_info) {
+  return fetch(`http://localhost:3000/tickets/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      type_of: type_of,
+      departure_date_time: departure_date_time,
+      departure_location: departure_location,
+      arrival_date_time: arrival_date_time,
+      arrival_location: arrival_location,
+      address: address,
+      relevant_info: relevant_info
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  }).then(response => response.json())
+}
+
+static patchFetchAcc(id, city, start_date, end_date, address, relevant_info) {
+  return fetch(`http://localhost:3000/accommodations/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      start_date: start_date,
+      end_date: end_date,
+      city: city,
+      address: address,
+      relevant_info: relevant_info
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  }).then(response => response.json())
+}
+
+static patchFetchExp(id, name, date, city, address, relevant_info) {
+  return fetch(`http://localhost:3000/experiences/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({
+      name: name,
+      date: date,
+      city: city,
+      address: address,
+      relevant_info: relevant_info
+    }),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  }).then(response => response.json())
+}
+
   static tripEditPatch(event) {
     let current = event.currentTarget
     let id = current.dataset.id
