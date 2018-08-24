@@ -18,9 +18,17 @@ class Experience {
     }
   }
 
+  static expCardEventListeners() {
+    document.querySelectorAll('#edit-experience').forEach(editButton => {
+      editButton.addEventListener('click', Experience.renderEditForm)
+    })
+    document.querySelectorAll('#delete-experience').forEach(deleteButton => {
+      deleteButton.addEventListener('click', Experience.deleteExp)
+  })
+}
 
   static addExperienceCard(exp, cardsDiv) {
-    cardsDiv.innerHTML += `<div class="card" data-id="${exp.id}">
+    cardsDiv.innerHTML += `<div class="card" data-id="${exp.id}" id="exp-${exp.id}">
       ${Experience.renderCard(exp)}
     </div>`
   }
@@ -138,7 +146,14 @@ class Experience {
     })
   }
 
-  static deleteExp(e) {
-    let id = e.currentTarget.dataset.id
+  static deleteExp(event) {
+    let id = event.currentTarget.dataset.id
+    fetch(`http://localhost:3000/experiences/${id}`, {
+    method: "DELETE"
+  })
+  .then(response => response.json())
+  .then(json => {
+    document.getElementById(`exp-${id}`).remove()
+    })
   }
 }
