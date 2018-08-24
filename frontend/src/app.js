@@ -36,7 +36,7 @@ static postFetchTrip(start_date, end_date, name, img_url) {
     }).then(response => response.json())
     .then(json => {
       Trip.renderSideBar(json)
-      renderTripProfile(json)
+      renderNewTripProfile(json)
   })
   let tripForm = document.getElementById('new-trip-form')
   tripForm.innerHTML = ""
