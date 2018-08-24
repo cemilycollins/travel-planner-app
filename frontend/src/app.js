@@ -85,6 +85,7 @@ static postFetchExp (name, date, city, address, relevant_info, trip_id) {
     let cardsDivs = document.querySelectorAll('.cards')
     Experience.addExperienceCard(json, cardsDivs[2])
     cardsDivs[2].parentNode.querySelector('#form').innerHTML = ""
+    Experience.expCardEventListeners()
   })
 }
 
