@@ -36,3 +36,8 @@
 .location_img {
    width: 75%;
 }
+
+.ui.button {
+  margin-top: 20px;
+  margin-bottom: 12px;
+}

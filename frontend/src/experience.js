@@ -55,7 +55,6 @@ class Experience {
     let id = e.currentTarget.dataset.id
     form.innerHTML = ""
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">New Experience</h4>
     <div class="field">
       <div class="one field">
@@ -99,7 +98,6 @@ class Experience {
     App.fetchOneExperience(id).then(json => {
       exp = json
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">Edit This Experience</h4>
     <div class="field">
       <div class="one field">
