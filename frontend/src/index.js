@@ -1,10 +1,26 @@
+const codes = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a"
+];
+
 let addTrip = document.getElementById('new-trip')
+let home = document.getElementById('homeButton')
 
 document.addEventListener('DOMContentLoaded', init)
 
 function init() {
   fetchTrips()
   addTrip.addEventListener('click', createNewTrip)
+  home.addEventListener('click', wipeTripInfo)
+  konamiCode()
 }
 
 function createNewTrip() {
@@ -57,4 +73,25 @@ function renderNewTripProfile(tripJson) {
     Accommodation.createAccommodationSegment(tripJson)
     Ticket.createTicketSegment(tripJson)
     Experience.createExperienceSegment(tripJson)
+}
+
+function wipeTripInfo() {
+  let tripInfoContainer = document.getElementById('twelve')
+  tripInfoContainer.innerHTML = ""
+}
+
+function konamiCode() {
+  let input = document.querySelector('body')
+  let i = 0
+  input.addEventListener('keydown', function(e) {
+    if (e.key === codes[i]) {
+      i++
+      if (i === codes.length){
+        alert('Hey! You found the GOLDEN EGG!!! SEE ANN FOR A ALL EXPENSES PAID MONTH LONG VACATION! ENJOY!')
+        i = 0
+      }
+    } else {
+      i = 0
+    }
+  })
 }
