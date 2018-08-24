@@ -17,7 +17,7 @@ class Accommodation {
         editButton.addEventListener('click', Accommodation.renderEditForm)
       })
       document.querySelectorAll('#delete-accommodation').forEach(deleteButton => {
-        Accommodation.deleteAcc
+        deleteButton.addEventListener('click', Accommodation.deleteAcc)
       })
     }
   }
@@ -45,8 +45,6 @@ class Accommodation {
     </div>`
   }
 
-
-
   static renderEditForm(e) {
     let id = e.currentTarget.dataset.id
     let acc
@@ -55,7 +53,7 @@ class Accommodation {
       acc = json
     form.innerHTML = `<form class="ui form">
     <br>
-    <h4 class="ui dividing header">Create A New Accommodation</h4>
+    <h4 class="ui dividing header">Edit This Accommodation</h4>
     <div class="field">
       <div class="one field">
         <label>City *</label>
@@ -78,10 +76,10 @@ class Accommodation {
         <div class="field">
           <input type="text" id="relevant-info" value="${acc.relevant_info}">
         </div>
-        <div class="ui button" id="submit" data-id="${acc.id}" tabindex="0">Submit</div>
+        <div class="ui button" id="submit-edit-acc" data-id="${acc.id}" tabindex="0">Submit</div>
         </form>`
 
-        let createButton = document.getElementById('submit')
+        let createButton = document.getElementById('submit-edit-acc')
         createButton.addEventListener('click', Accommodation.updateAccommodation)
     })
   }
@@ -135,13 +133,15 @@ class Accommodation {
   static updateAccommodation(e) {
     let id = e.currentTarget.dataset.id
     let formInputs = e.currentTarget.parentNode.querySelectorAll('input')
-    let cards = Array.from(e.currentTarget.parentNode.querySelectorAll('card'))
+    let cards = e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode.querySelectorAll('.card')
+    let formDiv = e.currentTarget.parentNode.parentNode.parentNode.parentNode
     App.patchFetchAcc(id, formInputs[0].value, formInputs[1].value, formInputs[2].value, formInputs[3].value, formInputs[4].value).then(json => {
       cards.forEach(card => {
         if (card.dataset.id == id) {
           card.innerHTML = Accommodation.renderCard(json)
         }
       })
+      formDiv.innerHTML = ""
     })
   }
 

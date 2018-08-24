@@ -29,7 +29,7 @@ class ExperiencesController < ApplicationController
 
   private
 
-  def find_ticket
+  def find_experience
     @experience = Experience.find(params[:id])
   end
 
