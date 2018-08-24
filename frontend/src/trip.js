@@ -26,19 +26,19 @@ static renderSideBar(trip) {
       <label>Name *</label>
       <div class="one field">
         <div class="field">
-          <input type="text" id="trip-name" placeholder="Trip Name">
+          <input type="text" id="new-trip-name" placeholder="Trip Name">
         </div>
         <label>Start Date *</label>
         <div class="field">
-          <input type="text" id="trip-start" placeholder="MM/DD/YYYY">
+          <input type="text" id="new-trip-start" placeholder="MM/DD/YYYY">
         </div>
         <label>End Date *</label>
         <div class="field">
-          <input type="text" id="trip-end" placeholder="MM/DD/YYYY">
+          <input type="text" id="new-trip-end" placeholder="MM/DD/YYYY">
         </div>
         <label>Image URL *</label>
         <div class="field">
-          <input type="text" id="trip-url" placeholder="Image URL">
+          <input type="text" id="new-trip-url" placeholder="Image URL">
         </div>
         <div class="ui button" id="new-trip-button" tabindex="0">Create Trip</div>
         </form>`
@@ -47,11 +47,13 @@ static renderSideBar(trip) {
   }
 
   static makeNewTrip() {
-    let tripName = document.getElementById('trip-name').value
-    let tripStart = document.getElementById('trip-start').value
-    let tripEnd = document.getElementById('trip-end').value
-    let img_url = document.getElementById('trip-url').value
+    let trip = document.getElementById('new-trip-form')
+    let tripName = document.getElementById('new-trip-name').value
+    let tripStart = document.getElementById('new-trip-start').value
+    let tripEnd = document.getElementById('new-trip-end').value
+    let img_url = document.getElementById('new-trip-url').value
     App.postFetchTrip(tripStart, tripEnd, tripName, img_url)
+    trip.innerHTML = ""
   }
 
 
@@ -113,7 +115,7 @@ static createTripSegment(id) {
 
   let eButton = document.getElementById('edit-trip')
   eButton.dataset.id = id
-  eButton.onclick = this.editTrip
+  eButton.onclick = Trip.editTrip
   let dButton = document.getElementById('delete-trip')
   dButton.dataset.id = id
   dButton.onclick = this.deleteTrip
@@ -153,6 +155,7 @@ static createTripSegment(id) {
        document.getElementById('edit-trip-start').value = currentStart
        document.getElementById('edit-trip-end').value = currentEnd
        document.getElementById('edit-trip-url').value = currentImg
+       debugger
        let editTripForm = document.getElementById('edit-trip-button')
        editTripForm.dataset.id = id
        editTripForm.addEventListener('click', App.tripEditPatch)
