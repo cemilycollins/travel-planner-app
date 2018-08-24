@@ -55,7 +55,6 @@ class Ticket {
     let id = e.currentTarget.dataset.id
     form.innerHTML = ""
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">New Ticket</h4>
     <div class="field">
       <div class="one field">
@@ -109,7 +108,6 @@ class Ticket {
     App.fetchOneTicket(id).then(json => {
       ticket = json
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">Edit This Ticket</h4>
     <div class="field">
       <div class="one field">

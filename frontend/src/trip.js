@@ -131,7 +131,6 @@ static createTripSegment(id) {
    let id = event.currentTarget.dataset.id
    let changeTrip = document.getElementById('edit-trip-form')
    changeTrip.innerHTML = `<form class="ui form">
-   <br>
    <h4 class="ui dividing header">Edit Trip</h4>
    <div class="field">
      <label>Name *</label>

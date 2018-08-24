@@ -56,7 +56,6 @@ class Accommodation {
     App.fetchOneAcc(id).then(json => {
       acc = json
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">Edit This Accommodation</h4>
     <div class="field">
       <div class="one field">
@@ -93,7 +92,6 @@ class Accommodation {
     let id = e.currentTarget.dataset.id
     form.innerHTML = ""
     form.innerHTML = `<form class="ui form">
-    <br>
     <h4 class="ui dividing header">Create A New Accommodation</h4>
     <div class="field">
       <div class="one field">
