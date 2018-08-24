@@ -18,7 +18,7 @@ class Ticket {
       editButton.addEventListener('click', Ticket.renderEditForm)
     })
     document.querySelectorAll('#delete-ticket').forEach(deleteButton => {
-      deleteButton.addEventListener('click', Ticket.deleteticket)
+      deleteButton.addEventListener('click', Ticket.deleteTicket)
     })
   }
 
@@ -168,6 +168,13 @@ class Ticket {
 
   static deleteTicket(e) {
     let id = e.currentTarget.dataset.id
+    fetch(`http://localhost:3000/tickets/${id}`, {
+    method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(json => {
+    document.getElementById(`ticket-${id}`).remove()
+    })
   }
 
 }

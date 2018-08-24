@@ -72,7 +72,7 @@ static renderTripSegment(tripJson) {
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
   img.className = 'location_img'
-  tripDetails.classList.add("six", "wide", "column")
+  tripDetails.classList.add("four", "wide", "column")
   imgDiv.classList.add("ten", "wide", "column")
   trip_info.append(tripDetails, imgDiv)
   tripDetails.append(b, p, b2, p2, b3, p3)

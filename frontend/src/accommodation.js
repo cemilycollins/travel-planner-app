@@ -88,11 +88,6 @@ class Accommodation {
     })
   }
 
-  static deleteAcc(e) {
-    let id = e.currentTarget.dataset.id
-    
-  }
-
   static renderNewAccForm(e) {
     let form = e.currentTarget.parentNode.querySelector('#form')
     let id = e.currentTarget.dataset.id
@@ -149,6 +144,17 @@ class Accommodation {
         }
       })
       formDiv.innerHTML = ""
+    })
+  }
+
+  static deleteAcc(e) {
+    let id = e.currentTarget.dataset.id
+    fetch(`http://localhost:3000/accommodations/${id}`, {
+    method: "DELETE"
+    })
+    .then(response => response.json())
+    .then(json => {
+    document.getElementById(`acc-${id}`).remove()
     })
   }
 
