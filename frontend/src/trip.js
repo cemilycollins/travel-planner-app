@@ -62,6 +62,8 @@ static renderTripSegment(tripJson) {
   container.innerHTML = ""
   this.createTripSegment(tripJson.id)
   let trip_info = document.getElementById('trip-description')
+  let tripDetails = document.createElement('div')
+  let imgDiv = document.createElement('div')
   let img = document.createElement('img')
   let b = document.createElement('b')
   let b2 = document.createElement('b')
@@ -69,8 +71,12 @@ static renderTripSegment(tripJson) {
   let p = document.createElement('p')
   let p2 = document.createElement('p')
   let p3 = document.createElement('p')
-
-  trip_info.append(b, p, b2, p2, b3, p3, img)
+  img.className = 'location_img'
+  tripDetails.classList.add("six", "wide", "column")
+  imgDiv.classList.add("ten", "wide", "column")
+  trip_info.append(tripDetails, imgDiv)
+  tripDetails.append(b, p, b2, p2, b3, p3)
+  imgDiv.appendChild(img)
   b.innerText = 'Trip Name:'
   b2.innerText = 'Start Date:'
   b3.innerText = 'End Date:'
@@ -100,7 +106,7 @@ static createTripSegment(id) {
   div3.append(div4, div5)
   div.classList.add("ui", "segment")
   div1.classList.add("ui", "top", "attached", "label")
-  div2.className = "description"
+  div2.classList.add("ui", "grid", "trip-description")
   div3.classList.add("ui", "two", "buttons")
   div4.classList.add("ui", "basic", "blue", "button")
   div5.classList.add("ui", "basic", "red", "button")

@@ -25,7 +25,7 @@
 
 .ui.grid {
   padding: 20px;
-  
+
 }
 
 .ui.label {
@@ -33,7 +33,7 @@
   font-size: 1.15em;
 }
 
-.description img {
-   height: 50%;
-   width: 65%;
+.location_img {
+   width: 75%;
+  right: 30px;
 }
