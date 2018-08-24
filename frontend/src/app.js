@@ -99,7 +99,7 @@ static postFetchTicket (type_of, departure_date_time, departure_location, arriva
       departure_location: departure_location,
       arrival_date_time: arrival_date_time,
       arrival_location: arrival_location,
-      address: address,
+      price: price,
       relevant_info: relevant_info,
       trip_id: trip_id
     }),
@@ -142,7 +142,7 @@ static patchFetchTicket(id, type_of, departure_date_time, departure_location, ar
       departure_location: departure_location,
       arrival_date_time: arrival_date_time,
       arrival_location: arrival_location,
-      address: address,
+      price: price,
       relevant_info: relevant_info
     }),
     headers: {
