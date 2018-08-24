@@ -13,17 +13,21 @@ class Accommodation {
       tripJson.accommodations.forEach(acc => {
         Accommodation.addAccommodationCard(acc, cardsDiv)
       })
-      document.querySelectorAll('#edit-accommodation').forEach(editButton => {
-        editButton.addEventListener('click', Accommodation.renderEditForm)
-      })
-      document.querySelectorAll('#delete-accommodation').forEach(deleteButton => {
-        deleteButton.addEventListener('click', Accommodation.deleteAcc)
-      })
+      Accommodation.accCardEventListeners()
     }
   }
 
+  static accCardEventListeners() {
+    document.querySelectorAll('#edit-accommodation').forEach(editButton => {
+      editButton.addEventListener('click', Accommodation.renderEditForm)
+    })
+    document.querySelectorAll('#delete-accommodation').forEach(deleteButton => {
+      deleteButton.addEventListener('click', Accommodation.deleteAcc)
+    })
+  }
+
   static addAccommodationCard(acc, cardsDiv) {
-    cardsDiv.innerHTML += `<div class='card' data-id=${acc.id}>
+    cardsDiv.innerHTML += `<div class='card' data-id=${acc.id} id="acc-${acc.id}">
       ${Accommodation.renderCard(acc)}
     </div>`
   }
@@ -86,6 +90,7 @@ class Accommodation {
 
   static deleteAcc(e) {
     let id = e.currentTarget.dataset.id
+    
   }
 
   static renderNewAccForm(e) {
@@ -139,6 +144,8 @@ class Accommodation {
       cards.forEach(card => {
         if (card.dataset.id == id) {
           card.innerHTML = Accommodation.renderCard(json)
+          card.querySelector('#edit-accommodation').addEventListener('click', Accommodation.renderEditForm)
+          card.querySelector('#delete-accommodation').addEventListener('click', Accommodation.deleteAccommodation)
         }
       })
       formDiv.innerHTML = ""

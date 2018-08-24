@@ -140,6 +140,8 @@ class Experience {
       cards.forEach(card => {
         if (card.dataset.id == id) {
           card.innerHTML = Experience.renderCard(json)
+          card.querySelector('#edit-experience').addEventListener('click', Experience.renderEditForm)
+          card.querySelector('#delete-experience').addEventListener('click', Experience.deleteExperience)
         }
       })
       formDiv.innerHTML = ""

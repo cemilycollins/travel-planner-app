@@ -9,17 +9,21 @@ class Ticket {
       tripJson.tickets.forEach(ticket => {
         Ticket.addTicketCard(ticket, cardsDiv)
       })
-      document.querySelectorAll('#edit-ticket').forEach(editButton => {
-        editButton.addEventListener('click', Ticket.renderEditForm)
-      })
-      document.querySelectorAll('#delete-ticket').forEach(deleteButton => {
-        deleteButton.addEventListener('click', Ticket.deleteticket)
-      })
+      Ticket.ticketCardEventListeners()
     }
   }
 
+  static ticketCardEventListeners() {
+    document.querySelectorAll('#edit-ticket').forEach(editButton => {
+      editButton.addEventListener('click', Ticket.renderEditForm)
+    })
+    document.querySelectorAll('#delete-ticket').forEach(deleteButton => {
+      deleteButton.addEventListener('click', Ticket.deleteticket)
+    })
+  }
+
   static addTicketCard(ticket, cardsDiv) {
-    cardsDiv.innerHTML += `<div class="card" data-id="${ticket.id}">
+    cardsDiv.innerHTML += `<div class="card" data-id="${ticket.id}" id="ticket-${ticket.id}">
       ${Ticket.renderCard(ticket)}
     </div>`
   }
@@ -154,6 +158,8 @@ class Ticket {
       cards.forEach(card => {
         if (card.dataset.id == id) {
           card.innerHTML = Ticket.renderCard(json)
+          card.querySelector('#edit-ticket').addEventListener('click', Ticket.renderEditForm)
+          card.querySelector('#delete-ticket').addEventListener('click', Ticket.deleteTicket)
         }
       })
       formDiv.innerHTML = ""

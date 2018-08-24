@@ -62,6 +62,7 @@ static postFetchAcc(city, start_date, end_date, address, relevant_info, trip_id)
     let cardsDivs = document.querySelectorAll('.cards')
     Accommodation.addAccommodationCard(json, cardsDivs[0])
     cardsDivs[0].parentNode.querySelector('#form').innerHTML = ""
+    Accommodation.accCardEventListeners()
   })
 }
 
@@ -111,6 +112,7 @@ static postFetchTicket (type_of, departure_date_time, departure_location, arriva
     let cardsDivs = document.querySelectorAll('.cards')
     Ticket.addTicketCard(json, cardsDivs[1])
     cardsDivs[1].parentNode.querySelector('#form').innerHTML = ""
+    Ticket.ticketCardEventListeners()
   })
 }
 
